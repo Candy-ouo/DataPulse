@@ -1,10 +1,21 @@
-﻿export default function KpiCard({ label, value, change, status = "up" }) {
-  const colorMap = { up: "text-[#00ffaa]", down: "text-[#ff4757]" };
+﻿export default function KpiCard({ label, value, change, status = 'up' }) {
+  const statusColor = status === 'up' ? '#00d4ff' : '#ff4757';
+  const statusBg = status === 'up' ? 'rgba(0,212,255,0.08)' : 'rgba(255,71,87,0.08)';
   return (
-    <div className="bg-[rgba(16,24,48,0.6)] border border-[rgba(0,255,170,0.12)] rounded-lg p-4 text-center hover:border-[rgba(0,255,170,0.2)] hover:bg-[rgba(0,255,170,0.06)] transition-all duration-200">
-      <p className="text-[11px] text-white/35 tracking-wider mb-1.5 uppercase">{label}</p>
-      <p className="text-2xl font-bold text-[#00ffaa] tabular-nums">{value}</p>
-      {change && <p className={`text-[11px] mt-1 ${colorMap[status] || "text-[#00ffaa]"}`}>{change}</p>}
+    <div
+      className="rounded-[8px] p-[12px] text-center transition-all duration-200"
+      style={{
+        background: 'rgba(6,10,30,0.7)',
+        border: '1px solid rgba(0,212,255,0.08)',
+      }}
+    >
+      <p className="text-[10px] tracking-[1.5px] mb-[6px]" style={{ color: 'rgba(255,255,255,0.3)' }}>{label}</p>
+      <p className="text-[22px] font-bold tabular-nums leading-tight" style={{ color: '#00d4ff' }}>{value}</p>
+      {change && (
+        <span className="inline-block text-[10px] mt-[4px] px-[6px] py-[1px] rounded-full" style={{ color: statusColor, background: statusBg }}>
+          {change}
+        </span>
+      )}
     </div>
   );
 }

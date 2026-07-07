@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+﻿import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import Header from "@/components/layout/Header";
 
@@ -8,8 +8,8 @@ describe("Header", () => {
     expect(screen.getByText("DataPulse")).toBeInTheDocument();
   });
 
-  it("shows system status", () => {
+  it("shows live status", () => {
     render(<Header title="Test" />);
-    expect(screen.getByText(/系统运行中/)).toBeInTheDocument();
+    expect(screen.getByText("LIVE")).toBeInTheDocument();
   });
 });

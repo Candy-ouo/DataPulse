@@ -1,23 +1,33 @@
 ﻿:root {
-  /* 主色调 */
-  --color-primary: #00ffaa;
-  --color-primary-dim: rgba(0, 255, 170, 0.15);
-  --color-primary-glow: rgba(0, 255, 170, 0.4);
-  --color-accent: #00cc88;
+  /* ===== 背景色系 · 夜空蓝 ===== */
+  --bg-deepest: #040816;       /* 最深底 */
+  --bg-deep: #080d26;          /* 夜空蓝 */
+  --bg-card: rgba(8, 14, 42, 0.88);   /* 半透卡片 */
+  --bg-panel: rgba(6, 10, 30, 0.7);   /* 面板底 */
+
+  /* ===== 高亮色系 · 冰蓝 ===== */
+  --color-primary: #00d4ff;        /* 亮青 - 主色 */
+  --color-primary-dim: rgba(0, 212, 255, 0.12);
+  --color-primary-glow: rgba(0, 212, 255, 0.35);
+  --color-accent: #00b4d8;         /* 湖蓝 - 辅助 */
+  --color-light: #90e0ef;          /* 冰蓝 - 柔和 */
   --color-warning: #ffd700;
   --color-danger: #ff4757;
-  --color-info: #4dabf7;
+  --color-info: #48b0f7;
 
-  /* 背景 */
-  --bg-deep: #0a0e1a;
-  --bg-card: rgba(12, 18, 34, 0.85);
-  --bg-panel: rgba(16, 24, 48, 0.6);
+  /* ===== 边框 ===== */
+  --border-color: rgba(0, 212, 255, 0.10);
+  --border-hover: rgba(0, 212, 255, 0.22);
 
-  /* 边框 */
-  --border-color: rgba(0, 255, 170, 0.12);
-
-  /* 文字 */
-  --text-primary: rgba(255, 255, 255, 0.9);
+  /* ===== 文字 ===== */
+  --text-primary: rgba(255, 255, 255, 0.92);
   --text-secondary: rgba(255, 255, 255, 0.6);
-  --text-dim: rgba(255, 255, 255, 0.35);
+  --text-dim: rgba(255, 255, 255, 0.3);
+  --text-accent: #00d4ff;
+
+  /* ===== 布局 ===== */
+  --header-height: 52px;
+  --card-radius: 10px;
+  --card-padding: 14px;
+  --content-gap: 10px;
 }
