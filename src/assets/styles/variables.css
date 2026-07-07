@@ -1,0 +1,23 @@
+﻿:root {
+  /* 主色调 */
+  --color-primary: #00ffaa;
+  --color-primary-dim: rgba(0, 255, 170, 0.15);
+  --color-primary-glow: rgba(0, 255, 170, 0.4);
+  --color-accent: #00cc88;
+  --color-warning: #ffd700;
+  --color-danger: #ff4757;
+  --color-info: #4dabf7;
+
+  /* 背景 */
+  --bg-deep: #0a0e1a;
+  --bg-card: rgba(12, 18, 34, 0.85);
+  --bg-panel: rgba(16, 24, 48, 0.6);
+
+  /* 边框 */
+  --border-color: rgba(0, 255, 170, 0.12);
+
+  /* 文字 */
+  --text-primary: rgba(255, 255, 255, 0.9);
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --text-dim: rgba(255, 255, 255, 0.35);
+}
