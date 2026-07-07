@@ -27,16 +27,19 @@ export function generateTrends() {
 
 const CATS = ["手机数码", "服装鞋帽", "美食饮品", "家居生活", "运动健康", "汽车用品", "图书教育", "其他"];
 export function generateCategories() {
-  const total = 100;
-  // First 7 categories get 8-18% each
   const mainTotal = 92;
   const vs = CATS.slice(0, -1).map(() => r(8, 18));
   const sum = vs.reduce((a, b) => a + b, 0);
   const result = CATS.slice(0, -1).map((n, i) => ({ name: n, value: Math.round((vs[i] / sum) * mainTotal) }));
-  // "其他" gets the remaining (max 8%)
   const used = result.reduce((s, d) => s + d.value, 0);
-  result.push({ name: CATS[CATS.length - 1], value: Math.min(total - used, 8) });
+  result.push({ name: CATS[CATS.length - 1], value: Math.min(100 - used, 8) });
   return result;
+}
+
+export function generateCategoryProducts() {
+  const names = ["手机数码", "服装鞋帽", "美食饮品", "家居生活", "运动健康", "汽车用品", "图书教育", "其他"];
+  const totals = [2580, 1860, 1420, 980, 760, 540, 410, 120];
+  return names.map((name, i) => ({ name, value: fl(totals[i], 0.06) }));
 }
 
 const PROVS = ["广东", "浙江", "江苏", "北京", "上海", "四川", "山东", "河南"];

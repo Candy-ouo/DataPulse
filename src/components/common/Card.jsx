@@ -3,7 +3,7 @@
     return (
       <div className={`rounded-[10px] p-[14px] ${className}`} style={{ background: 'rgba(8,14,42,0.88)', border: '1px solid rgba(0,212,255,0.10)' }}>
         <div className="animate-pulse space-y-3">
-          <div className="h-3 rounded w-1/3" style={{ background: 'rgba(0,212,255,0.06)' }} />
+          <div className="h-4 rounded w-1/3" style={{ background: 'rgba(0,212,255,0.06)' }} />
           <div className="h-32 rounded" style={{ background: 'rgba(0,212,255,0.04)' }} />
         </div>
       </div>
@@ -17,23 +17,14 @@
     );
   }
   return (
-    <div
-      className={`rounded-[10px] p-[14px] flex flex-col transition-all duration-300 ${className}`}
-      style={{
-        background: 'rgba(8,14,42,0.88)',
-        border: '1px solid rgba(0,212,255,0.10)',
-        boxShadow: '0 0 20px rgba(0,212,255,0.03)',
-      }}
-    >
+    <div className={`rounded-[10px] p-[14px] flex flex-col transition-all duration-300 ${className}`} style={{ background: 'rgba(8,14,42,0.88)', border: '1px solid rgba(0,212,255,0.10)', boxShadow: '0 0 20px rgba(0,212,255,0.03)' }}>
       {title && (
         <div className="flex items-center justify-between mb-[10px]">
-          <h3 className="text-xs font-semibold tracking-[1.5px] uppercase flex items-center gap-[6px]" style={{ color: 'rgba(255,255,255,0.45)' }}>
-            <span style={{ color: '#00d4ff' }}>▎</span>{title}
-            {refreshing && <span className="text-[10px]" style={{ color: 'rgba(0,212,255,0.4)' }}>⟳</span>}
+          <h3 className="text-[13px] font-semibold tracking-[1.5px] uppercase flex items-center gap-[6px]" style={{ color: 'rgba(255,255,255,0.5)' }}>
+            <span className="text-[16px]" style={{ color: '#00d4ff' }}>▎</span>{title}
+            {refreshing && <span className="text-[11px]" style={{ color: 'rgba(0,212,255,0.4)' }}>⟳</span>}
           </h3>
-          {refreshing && (
-            <span className="inline-block w-[6px] h-[6px] rounded-full animate-ping" style={{ background: '#00d4ff' }} />
-          )}
+          {refreshing && <span className="inline-block w-[7px] h-[7px] rounded-full animate-ping" style={{ background: '#00d4ff' }} />}
           {actions}
         </div>
       )}

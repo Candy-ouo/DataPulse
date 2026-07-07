@@ -11,6 +11,7 @@ export default function DashboardPage() {
   const { data: topKpis, loading: kpiLoading } = useData('topKpis', {}, { refreshInterval: 5000 });
   const { data: trendData, loading: trendLoading, refreshing: trendRefreshing } = useData('trends', {}, { refreshInterval: 10000 });
   const { data: catData, loading: catLoading, refreshing: catRefreshing } = useData('categories', {}, { refreshInterval: 15000 });
+  const { data: prodData, loading: prodLoading, refreshing: prodRefreshing } = useData('categoryProducts', {}, { refreshInterval: 15000 });
   const { data: geoData, loading: geoLoading, refreshing: geoRefreshing } = useData('geography', {}, { refreshInterval: 20000 });
   const { data: rtData, loading: rtLoading, refreshing: rtRefreshing } = useData('realtime', {}, { refreshInterval: 5000 });
 
@@ -20,9 +21,9 @@ export default function DashboardPage() {
         {/* ===== Top KPI Bar ===== */}
         <div className="shrink-0">
           {kpiLoading ? (
-            <div className="grid grid-cols-6 gap-[8px]">
+            <div className="grid grid-cols-6 gap-[10px]">
               {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="h-[60px] rounded-[8px] animate-pulse" style={{ background: 'rgba(0,212,255,0.04)' }} />
+                <div key={i} className="h-[66px] rounded-[10px] animate-pulse" style={{ background: 'rgba(0,212,255,0.04)' }} />
               ))}
             </div>
           ) : (
@@ -41,16 +42,16 @@ export default function DashboardPage() {
             </div>
             <div className="flex-[2] min-h-0">
               <Card title="系统状态" className="h-full">
-                <div className="flex flex-col justify-center h-full gap-[8px] px-[4px]">
+                <div className="flex flex-col justify-center h-full gap-[10px] px-[6px]">
                   {[
                     { label: '数据源', value: import.meta.env.VITE_DATA_SOURCE || 'mock', color: '#00d4ff' },
                     { label: '刷新间隔', value: '5s', color: '#48b0f7' },
                     { label: '日志级别', value: import.meta.env.VITE_LOG_LEVEL || 'info', color: '#90e0ef' },
-                    { label: '运行版本', value: '1.0.0', color: 'rgba(255,255,255,0.3)' },
+                    { label: '运行版本', value: '1.0.0', color: 'rgba(255,255,255,0.35)' },
                   ].map((item, i) => (
-                    <div key={i} className="flex justify-between items-center px-[10px] py-[6px] rounded-[6px]" style={{ background: 'rgba(0,212,255,0.04)' }}>
-                      <span className="text-[10px]" style={{ color: 'rgba(255,255,255,0.25)' }}>{item.label}</span>
-                      <span className="text-[11px] font-mono font-semibold" style={{ color: item.color }}>{item.value}</span>
+                    <div key={i} className="flex justify-between items-center px-[12px] py-[8px] rounded-[6px]" style={{ background: 'rgba(0,212,255,0.04)' }}>
+                      <span className="text-[12px]" style={{ color: 'rgba(255,255,255,0.3)' }}>{item.label}</span>
+                      <span className="text-[13px] font-mono font-semibold" style={{ color: item.color }}>{item.value}</span>
                     </div>
                   ))}
                 </div>
@@ -72,28 +73,28 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          {/* === Right 3/12: 品类售卖 + 实时监控 === */}
+          {/* === Right 3/12: 品类数 + 实时监控 === */}
           <div className="col-span-3 flex flex-col gap-[10px]">
             <div className="flex-[3] min-h-0">
-              <Card title="品类售卖" loading={catLoading} refreshing={catRefreshing} className="h-full">
-                <div className="w-full h-full"><BarChart data={catData || []} /></div>
+              <Card title="品类产品数" loading={prodLoading} refreshing={prodRefreshing} className="h-full">
+                <div className="w-full h-full"><BarChart data={prodData || []} /></div>
               </Card>
             </div>
             <div className="flex-[2] min-h-0">
               <Card title="实时监控" loading={rtLoading} refreshing={rtRefreshing} className="h-full">
-                <div className="grid grid-cols-2 gap-[6px] w-full h-full">
-                  <div className="relative">
+                <div className="grid grid-cols-5 gap-[6px] w-full h-full">
+                  <div className="col-span-3 relative">
                     <GaugeChart value={rtData?.systemLoad || 0} title="系统负载" unit="%" />
                   </div>
-                  <div className="flex flex-col justify-center gap-[10px] px-[4px]">
+                  <div className="col-span-2 flex flex-col justify-center gap-[8px]">
                     {[
                       { label: '访客', value: rtData?.currentVisitors || 0, unit: '人' },
                       { label: '订单', value: rtData?.todayOrders || 0, unit: '单' },
                       { label: '营收', value: rtData?.todayRevenue ? `¥${(rtData.todayRevenue / 10000).toFixed(1)}` : '¥0', unit: '万' },
                     ].map((item, i) => (
-                      <div key={i} className="text-center">
-                        <p className="text-[9px]" style={{ color: 'rgba(255,255,255,0.25)' }}>{item.label}</p>
-                        <p className="text-[15px] font-bold tabular-nums mt-[2px]" style={{ color: '#00d4ff' }}>{item.value}<span className="text-[9px] ml-[2px]" style={{ color: 'rgba(0,212,255,0.4)' }}>{item.unit}</span></p>
+                      <div key={i} className="text-center py-[4px]">
+                        <p className="text-[11px]" style={{ color: 'rgba(255,255,255,0.3)' }}>{item.label}</p>
+                        <p className="text-[18px] font-bold tabular-nums mt-[2px] leading-tight" style={{ color: '#00d4ff' }}>{item.value}<span className="text-[10px] ml-[2px]" style={{ color: 'rgba(0,212,255,0.45)' }}>{item.unit}</span></p>
                       </div>
                     ))}
                   </div>
