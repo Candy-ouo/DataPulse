@@ -1,18 +1,15 @@
-﻿import { generateKpiData, generateTrends, generateCategories, generateGeography, generateOverview, generateRealtime } from "./generator";
+﻿import { generateKpiData, generateTrends, generateCategories, generateGeography, generateTopKpis } from "./generator";
 
 const serviceMap = {
-  overview: generateOverview,
   kpi: generateKpiData,
   trends: generateTrends,
   categories: generateCategories,
   geography: generateGeography,
-  realtime: generateRealtime,
+  topKpis: generateTopKpis,
 };
 
 export function getMockData(name) {
-  const generator = serviceMap[name];
-  if (!generator) throw new Error(`Mock not found: ${name}`);
-  return generator();
+  const g = serviceMap[name];
+  if (!g) throw new Error("Mock not found: " + name);
+  return g();
 }
-
-export { generateKpiData, generateTrends, generateCategories, generateGeography };
