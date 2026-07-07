@@ -17,10 +17,10 @@ function KpiGrid({ data }) {
 }
 
 export default function DashboardPage() {
-  const { data: kpiData, loading: kpiLoading } = useData("kpi", {}, { refreshInterval: 5000 });
-  const { data: trendData, loading: trendLoading } = useData("trends", {}, { refreshInterval: 10000 });
-  const { data: catData, loading: catLoading } = useData("categories", {}, { refreshInterval: 15000 });
-  const { data: geoData, loading: geoLoading } = useData("geography", {}, { refreshInterval: 20000 });
+  const { data: kpiData, loading: kpiLoading, refreshing: kpiRefreshing } = useData("kpi", {}, { refreshInterval: 5000 });
+  const { data: trendData, loading: trendLoading, refreshing: trendRefreshing } = useData("trends", {}, { refreshInterval: 10000 });
+  const { data: catData, loading: catLoading, refreshing: catRefreshing } = useData("categories", {}, { refreshInterval: 15000 });
+  const { data: geoData, loading: geoLoading, refreshing: geoRefreshing } = useData("geography", {}, { refreshInterval: 20000 });
 
   return (
     <DashboardLayout
@@ -30,27 +30,27 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 h-full">
         {/* Left Panel - KPI */}
         <div className="lg:col-span-1 space-y-4">
-          <Card title="核心指标" loading={kpiLoading}>
+          <Card title="核心指标" loading={kpiLoading} refreshing={kpiRefreshing}>
             <KpiGrid data={kpiData} />
           </Card>
-          <Card title="地域分布" loading={geoLoading}>
+          <Card title="地域分布" loading={geoLoading} refreshing={geoRefreshing}>
             <RankList data={geoData || []} labelKey="province" valueKey="value" />
           </Card>
         </div>
 
         {/* Center Panel - Charts */}
         <div className="lg:col-span-2 space-y-4">
-          <Card title="趋势图" className="flex-1" loading={trendLoading}>
+          <Card title="趋势图" className="flex-1" loading={trendLoading} refreshing={trendRefreshing}>
             <div className="h-full min-h-[280px]"><LineChart data={trendData || []} /></div>
           </Card>
-          <Card title="各品类分布" className="flex-1" loading={catLoading}>
+          <Card title="各品类分布" className="flex-1" loading={catLoading} refreshing={catRefreshing}>
             <div className="h-full min-h-[240px]"><PieChart data={catData || []} /></div>
           </Card>
         </div>
 
         {/* Right Panel - More */}
         <div className="lg:col-span-1 space-y-4">
-          <Card title="品类售卖图" loading={catLoading}>
+          <Card title="品类售卖图" loading={catLoading} refreshing={catRefreshing}>
             <div className="h-full min-h-[220px]"><BarChart data={catData || []} /></div>
           </Card>
           <Card title="系统状态">

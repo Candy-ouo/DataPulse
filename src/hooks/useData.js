@@ -1,16 +1,23 @@
-import { useState, useEffect, useCallback } from "react";
+﻿import { useState, useEffect, useCallback, useRef } from "react";
 import { dataSource } from "@/services/dataSource";
 import { useLogger } from "./useLogger";
 
 export function useData(serviceName, params = {}, options = {}) {
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);   // 首次加载
+  const [refreshing, setRefreshing] = useState(false); // 后续刷新
   const [error, setError] = useState(null);
   const log = useLogger("useData");
   const { refreshInterval = 0 } = options;
+  const isFirstLoad = useRef(true);
 
   const fetchData = useCallback(async () => {
-    setLoading(true);
+    // 首次加载 → loading; 后续刷新 → refreshing
+    if (isFirstLoad.current) {
+      setLoading(true);
+    } else {
+      setRefreshing(true);
+    }
     try {
       const res = await dataSource.getData(serviceName, params);
       setData(res);
@@ -20,6 +27,8 @@ export function useData(serviceName, params = {}, options = {}) {
       log.error(`${serviceName} 获取失败`, e);
     } finally {
       setLoading(false);
+      setRefreshing(false);
+      isFirstLoad.current = false;
     }
   }, [serviceName, JSON.stringify(params)]);
 
@@ -31,5 +40,5 @@ export function useData(serviceName, params = {}, options = {}) {
     }
   }, [fetchData, refreshInterval]);
 
-  return { data, loading, error, refetch: fetchData };
+  return { data, loading, refreshing, error, refetch: fetchData };
 }
