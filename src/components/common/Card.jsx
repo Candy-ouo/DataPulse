@@ -25,8 +25,8 @@
     <div className={`bg-[rgba(12,18,34,0.85)] border border-[rgba(0,255,170,0.12)] rounded-xl p-4 hover:border-[rgba(0,255,170,0.25)] transition-colors duration-300 flex flex-col ${className}`}>
       {title && (
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-semibold text-white/60 tracking-wide uppercase before:content-['\\255e'] before:text-[#00ffaa] before:mr-1.5">
-            {title}
+          <h3 className="text-sm font-semibold text-white/60 tracking-wide uppercase">
+            <span className="text-[#00ffaa] mr-1.5">▎</span>{title}
             {refreshing && <span className="ml-2 text-[10px] text-[#00ffaa]/50">刷新中...</span>}
           </h3>
           <div className="flex items-center gap-2">

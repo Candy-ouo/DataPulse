@@ -1,2 +1,0 @@
-export const trendData = [{date:"2026-01",pv:48000,uv:32000,revenue:520000},{date:"2026-02",pv:52000,uv:35000,revenue:580000},{date:"2026-03",pv:58000,uv:38000,revenue:640000},{date:"2026-04",pv:63000,uv:42000,revenue:710000},{date:"2026-05",pv:72000,uv:48000,revenue:780000},{date:"2026-06",pv:85000,uv:56000,revenue:870000}];
-export const categoryData = [{name:"电子产品",value:42},{name:"服装鞋帽",value:28},{name:"食品饮料",value:15},{name:"家居用品",value:10},{name:"其他",value:5}];
