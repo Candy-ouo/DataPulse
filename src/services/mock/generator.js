@@ -25,10 +25,18 @@ export function generateTrends() {
   });
 }
 
-const CATS = ["电子产品", "服装鞋帽", "食品饮料", "家居用品", "其他"];
+const CATS = ["手机数码", "服装鞋帽", "美食饮品", "家居生活", "运动健康", "汽车用品", "图书教育", "其他"];
 export function generateCategories() {
-  const vs = CATS.map(() => r(5, 30)), s = vs.reduce((a, b) => a + b, 0);
-  return CATS.map((n, i) => ({ name: n, value: i === CATS.length - 1 ? 100 : Math.round((vs[i] / s) * 100) }));
+  const total = 100;
+  // First 7 categories get 8-18% each
+  const mainTotal = 92;
+  const vs = CATS.slice(0, -1).map(() => r(8, 18));
+  const sum = vs.reduce((a, b) => a + b, 0);
+  const result = CATS.slice(0, -1).map((n, i) => ({ name: n, value: Math.round((vs[i] / sum) * mainTotal) }));
+  // "其他" gets the remaining (max 8%)
+  const used = result.reduce((s, d) => s + d.value, 0);
+  result.push({ name: CATS[CATS.length - 1], value: Math.min(total - used, 8) });
+  return result;
 }
 
 const PROVS = ["广东", "浙江", "江苏", "北京", "上海", "四川", "山东", "河南"];
