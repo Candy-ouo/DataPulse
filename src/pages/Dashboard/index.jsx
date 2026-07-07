@@ -8,12 +8,12 @@ import RankList from '@/components/data-display/RankList';
 import { BarChart, LineChart, PieChart, GaugeChart } from '@/charts';
 
 export default function DashboardPage() {
-  const { data: topKpis, loading: kpiLoading } = useData('topKpis', {}, { refreshInterval: 5000 });
-  const { data: trendData, loading: trendLoading, refreshing: trendRefreshing } = useData('trends', {}, { refreshInterval: 10000 });
-  const { data: catData, loading: catLoading, refreshing: catRefreshing } = useData('categories', {}, { refreshInterval: 15000 });
-  const { data: prodData, loading: prodLoading, refreshing: prodRefreshing } = useData('categoryProducts', {}, { refreshInterval: 15000 });
-  const { data: geoData, loading: geoLoading, refreshing: geoRefreshing } = useData('geography', {}, { refreshInterval: 20000 });
-  const { data: rtData, loading: rtLoading, refreshing: rtRefreshing } = useData('realtime', {}, { refreshInterval: 5000 });
+  const { data: topKpis, loading: kpiLoading } = useData('topKpis');
+  const { data: trendData, loading: trendLoading, refreshing: trendRefreshing } = useData('trends');
+  const { data: catData, loading: catLoading, refreshing: catRefreshing } = useData('categories');
+  const { data: prodData, loading: prodLoading, refreshing: prodRefreshing } = useData('categoryProducts');
+  const { data: geoData, loading: geoLoading, refreshing: geoRefreshing } = useData('geography');
+  const { data: rtData, loading: rtLoading, refreshing: rtRefreshing } = useData('realtime');
 
   return (
     <DashboardLayout header={<Header title="DataPulse · 数据脉动" />} footer={<Footer />}>
@@ -107,3 +107,4 @@ export default function DashboardPage() {
     </DashboardLayout>
   );
 }
+
