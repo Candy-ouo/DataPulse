@@ -1,4 +1,4 @@
-﻿import { generateKpiData, generateTrends, generateCategories, generateGeography, generateTopKpis } from "./generator";
+﻿import { generateKpiData, generateTrends, generateCategories, generateGeography, generateTopKpis, generateRealtime } from "./generator";
 
 const serviceMap = {
   kpi: generateKpiData,
@@ -6,6 +6,7 @@ const serviceMap = {
   categories: generateCategories,
   geography: generateGeography,
   topKpis: generateTopKpis,
+  realtime: generateRealtime,
 };
 
 export function getMockData(name) {

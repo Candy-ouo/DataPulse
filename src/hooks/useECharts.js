@@ -1,9 +1,9 @@
-import { useEffect, useRef } from "react";
+﻿import { useEffect, useRef } from "react";
 import * as echarts from "echarts/core";
-import { BarChart, LineChart, PieChart } from "echarts/charts";
+import { BarChart, LineChart, PieChart, GaugeChart } from "echarts/charts";
 import { TooltipComponent, GridComponent, LegendComponent } from "echarts/components";
 import { CanvasRenderer } from "echarts/renderers";
-echarts.use([BarChart, LineChart, PieChart, TooltipComponent, GridComponent, LegendComponent, CanvasRenderer]);
+echarts.use([BarChart, LineChart, PieChart, GaugeChart, TooltipComponent, GridComponent, LegendComponent, CanvasRenderer]);
 
 export function useECharts({ options, theme } = {}) {
   const chartRef = useRef(null);
