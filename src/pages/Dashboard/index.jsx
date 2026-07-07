@@ -32,9 +32,9 @@ export default function DashboardPage() {
         </div>
 
         {/* ===== Main Grid: 3 + 6 + 3 ===== */}
-        <div className="flex-1 min-h-0 grid grid-cols-12 gap-[10px]">
+        <div className="flex-1 min-h-0 grid grid-cols-12 gap-[10px]" style={{ animation: "fade-in 0.6s ease-out" }}>
           {/* === Left 3/12: 地域排名 + 系统状态 === */}
-          <div className="col-span-3 flex flex-col gap-[10px]">
+          <div className="col-span-3 flex flex-col gap-[10px]" style={{ animation: "fade-in 0.5s ease-out 0.3s both" }}>
             <div className="flex-[3] min-h-0">
               <Card title="地域排名" loading={geoLoading} refreshing={geoRefreshing} className="h-full">
                 <RankList data={geoData || []} labelKey="province" valueKey="value" />
@@ -60,7 +60,7 @@ export default function DashboardPage() {
           </div>
 
           {/* === Center 6/12: 数据趋势 + 品类分布 === */}
-          <div className="col-span-6 flex flex-col gap-[10px]">
+          <div className="col-span-6 flex flex-col gap-[10px]" style={{ animation: "fade-in 0.5s ease-out 0.2s both" }}>
             <div className="flex-1 min-h-0">
               <Card title="数据趋势" loading={trendLoading} refreshing={trendRefreshing} className="h-full">
                 <div className="w-full h-full"><LineChart data={trendData || []} /></div>
@@ -74,7 +74,7 @@ export default function DashboardPage() {
           </div>
 
           {/* === Right 3/12: 品类数 + 实时监控 === */}
-          <div className="col-span-3 flex flex-col gap-[10px]">
+          <div className="col-span-3 flex flex-col gap-[10px]" style={{ animation: "fade-in 0.5s ease-out 0.3s both" }}>
             <div className="flex-[3] min-h-0">
               <Card title="品类产品数" loading={prodLoading} refreshing={prodRefreshing} className="h-full">
                 <div className="w-full h-full"><BarChart data={prodData || []} /></div>
@@ -107,4 +107,6 @@ export default function DashboardPage() {
     </DashboardLayout>
   );
 }
+
+
 
